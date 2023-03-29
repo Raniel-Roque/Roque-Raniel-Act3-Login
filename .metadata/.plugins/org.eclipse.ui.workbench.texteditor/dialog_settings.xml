@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="NameAcc"/>
+		<item key="selection" value="Successfully  Signed Up"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="assword not matched"/>
+			<item value="Successful Sign Up"/>
+			<item value=" Do not use spaces or special characters (Except @, ., -, or _)"/>
+			<item value="SpaceNSpecialCheck"/>
+			<item value=" Do not use spaces or special characters"/>
+			<item value=" Do not use spaces or special characters besides underscore, dash, and period"/>
+			<item value="matte"/>
 			<item value="NameAcc"/>
 			<item value="reg"/>
 			<item value="AccountInfo"/>
@@ -16,15 +23,14 @@
 			<item value="Birthday"/>
 			<item value="Bio"/>
 			<item value="Final"/>
-			<item value="System"/>
-			<item value=" Do not use spaces or special characters besides underscore, dash and period"/>
-			<item value=" Do not use spaces or special characters besides underscore, dash, and period"/>
-			<item value=" Do not use spaces or special characters besides underscore and period"/>
-			<item value="Sex"/>
-			<item value="Announce"/>
-			<item value="Welcome"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Successfully  Signed Up"/>
+			<item value=" Do not use spaces in your username."/>
+			<item value="SpaceCheck"/>
+			<item value=" Do not use spaces or special characters (Except @, ., -, or _)"/>
+			<item value=" Do not use spaces or special characters"/>
+			<item value=" Do not use spaces in your username"/>
 			<item value="Bio"/>
 			<item value="UsernameAcc"/>
 			<item value=""/>
@@ -34,14 +40,13 @@
 			<item value="Sex"/>
 			<item value="AccInfo"/>
 			<item value="PassCreateTxT"/>
-			<item value="SignUp"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="987"/>
-		<item key="DIALOG_Y_ORIGIN" value="107"/>
+		<item key="DIALOG_Y_ORIGIN" value="106"/>
 		<item key="DIALOG_WIDTH" value="322"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_HEIGHT" value="392"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>

@@ -5,8 +5,10 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
 
 public class LoginFrame extends JFrame implements ActionListener{
 	
@@ -22,7 +24,8 @@ public class LoginFrame extends JFrame implements ActionListener{
 	JButton SignUp = new JButton();
 	JButton Cancel = new JButton();
 
-	String FinalUser, FinalPass, FinalName, DateCreate;
+	String FinalUser, FinalPass, FinalName;
+	LocalDate DateCreate;
 	
 	void LoginFrameDesign(){	
 		setSize(500, 350);
@@ -104,23 +107,64 @@ public class LoginFrame extends JFrame implements ActionListener{
 		UserText.setText("Username");
 		UserText.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 17));
 		
-		User.setBounds(170, 95, 277, 35);
+		User.setBounds(170, 90, 277, 35);
 		User.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		User.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+		User.setBackground(Color.decode("#F5F5DC"));
+		User.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyPressed(java.awt.event.KeyEvent e) {
+		    if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+		    	Pass.requestFocus();
+		     } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
+		    	Pass.requestFocus();
+		    }
+		  }
+		});
+		
 		
 		PassText.setBounds(170, 128, 250, 50);
 		PassText.setText("Password");
 		PassText.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 17));
 		
-		Pass.setBounds(170, 170, 250, 35);
+		Pass.setBounds(170, 165, 250, 35);
 		Pass.setFont(new Font("SansSerif", Font.BOLD, 18));
+		Pass.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+		Pass.setBackground(Color.decode("#F5F5DC"));
 		Pass.setEchoChar('∗');
+		Pass.addKeyListener(new java.awt.event.KeyAdapter() {
+			public void keyPressed(java.awt.event.KeyEvent e) {
+		     if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+		 			if((User.getText().equals(null) || User.getText().equals("")) && (new String(Pass.getPassword()).equals(null) || new String(Pass.getPassword()).equals(""))) {
+		 				JOptionPane.showMessageDialog(null, "Please enter your username and password", "Unsuccessful Login", JOptionPane.WARNING_MESSAGE);
+		 			} else if(User.getText().equals(null) || User.getText().equals("")){
+		 				JOptionPane.showMessageDialog(null, "Please enter your username", "Unsuccessful Login", JOptionPane.WARNING_MESSAGE);
+		 			} else if(new String(Pass.getPassword()).equals(null) || new String(Pass.getPassword()).equals("")){
+		 				JOptionPane.showMessageDialog(null, "Please enter your password", "Unsuccessful Login", JOptionPane.WARNING_MESSAGE);
+		 			} else if(User.getText().equals(FinalUser) && new String(Pass.getPassword()).equals(FinalPass)) {
+		 				JOptionPane.showMessageDialog(null, "Successfully Logged In!", "Successful Login", JOptionPane.INFORMATION_MESSAGE);
+		 				Dashboard Home = new Dashboard();
+		 				Home.FinalUser = FinalUser;
+		 				Home.FinalPass = FinalPass;
+		 				Home.FinalName = FinalName;
+		 				Home.DateCreate = DateCreate;
+		 				Home.DashboardDesign();
+		 				dispose();
+		 			} else {
+		 				JOptionPane.showMessageDialog(null, "Incorrect username or password", "Incorrect Account Details", JOptionPane.ERROR_MESSAGE);
+		 			}
+		 		} else  if (e.getKeyCode() == KeyEvent.VK_UP ) {
+	 		    	User.requestFocus();
+	 		    }
+		     }
+		});
 		
 		ShowPass.setIcon(HideImgPass);
-		ShowPass.setBounds(420, 170, 27, 34);
+		ShowPass.setBounds(420, 165, 27, 34);
 		ShowPass.setBackground(Color.decode("#F5F5DC"));
 		ShowPass.setOpaque(true);
 		ShowPass.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
 		ShowPass.setFocusable(false);
+		ShowPass.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 		ShowPass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ShowPass.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -236,10 +280,14 @@ public class LoginFrame extends JFrame implements ActionListener{
 		
 		//CANCEL
 		if (e.getSource() == Cancel) {
-			int CancelConf= JOptionPane.showConfirmDialog(this, "Cancel login session?", "Cancel Login", JOptionPane.YES_NO_OPTION);
+			int CancelConf= JOptionPane.showConfirmDialog(this, "Reset login session?", "Cancel Login", JOptionPane.YES_NO_OPTION);
 			if (CancelConf == JOptionPane.YES_OPTION) {
 				User.setText("");
 				Pass.setText("");
+				int Quit= JOptionPane.showConfirmDialog(this, "Quit session?", "Quit", JOptionPane.YES_NO_OPTION);
+				if (Quit == JOptionPane.YES_OPTION) {
+					dispose();
+				}
 			}
 		}
 	}

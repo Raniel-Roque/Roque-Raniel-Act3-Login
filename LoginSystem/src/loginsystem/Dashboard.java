@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.*;
 
@@ -27,7 +28,8 @@ public class Dashboard extends JFrame implements ActionListener{
 	Toolkit ToolK = getToolkit();
 	Dimension Size = ToolK.getScreenSize();
 	
-	String FinalUser, FinalPass, FinalName, DateCreate;
+	String FinalUser, FinalPass, FinalName;
+	LocalDate DateCreate;
 	void DashboardDesign(){
 		setSize(500, 350);
 		setLocation(Size.width/2 - getWidth()/2, Size.height/2 - getHeight()/2);

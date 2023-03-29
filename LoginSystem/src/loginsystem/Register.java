@@ -8,12 +8,14 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 import java.util.regex.Matcher; 
 import java.util.regex.Pattern;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;    
+import java.time.LocalDate;
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;    
 
 public class Register extends JFrame implements ActionListener{
 	
@@ -67,6 +69,13 @@ public class Register extends JFrame implements ActionListener{
 		LastName.setBounds(25, 90, 180, 30);
 		LastName.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		LastName.setForeground(Color.BLACK);
+		LastName.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyPressed(java.awt.event.KeyEvent e) {
+		    if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+		    	FirstName.requestFocus();
+		     } 
+		    }
+		});
 		
 		First.setBounds(228, 50, 150, 50);
 		First.setText("First Name");
@@ -76,6 +85,13 @@ public class Register extends JFrame implements ActionListener{
 		FirstName.setBounds(228, 90, 180, 30);
 		FirstName.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		FirstName.setForeground(Color.BLACK);
+		FirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyPressed(java.awt.event.KeyEvent e) {
+		    if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+		    	MiddleIni.requestFocus();
+		     } 
+		    }
+		});
 		
 		Middle.setBounds(430, 50, 150, 50);
 		Middle.setText("M.I.");
@@ -85,6 +101,29 @@ public class Register extends JFrame implements ActionListener{
 		MiddleIni.setBounds(430, 90, 30, 30);
 		MiddleIni.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		MiddleIni.setForeground(Color.BLACK);
+		MiddleIni.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyPressed(java.awt.event.KeyEvent e) {
+		    if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+		    	if(Username.getText().isEmpty()) {
+		    		Username.setText(" Do not use spaces in your username.");
+		    		Username.setForeground(Color.decode("#474747"));
+		    		Username.setEditable(false);
+		    		Username.setBackground(Color.WHITE);
+		    		Username.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		    		Username.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		    	} else if(Username.getText().equals(" Do not use spaces in your username.")) {
+		    		Username.setText("");
+		    		Username.setForeground(Color.BLACK);
+		    		Username.setEditable(true);
+		    		Username.setBackground(Color.WHITE);
+		    		Username.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		    		Username.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		    	}
+		    	
+		    	Username.requestFocus();
+		     } 
+		    }
+		});
 		
 		UsernameTxT.setBounds(25, 115, 250, 50);
 		UsernameTxT.setText("Username");
@@ -94,7 +133,7 @@ public class Register extends JFrame implements ActionListener{
 		Username.setBounds(25, 160, 435, 30);
 		Username.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		Username.setForeground(Color.decode("#474747"));
-		Username.setText(" Do not use spaces or special characters besides underscore, dash, and period");
+		Username.setText(" Do not use spaces in your username.");
 		Username.setEditable(false);
 		Username.setBackground(Color.WHITE);
 		Username.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
@@ -102,7 +141,7 @@ public class Register extends JFrame implements ActionListener{
 		Username.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseExited(java.awt.event.MouseEvent evt) {
 		    	if(Username.getText().isEmpty()) {
-		    		Username.setText(" Do not use spaces or special characters besides underscore, dash, and period");
+		    		Username.setText(" Do not use spaces in your username.");
 		    		Username.setForeground(Color.decode("#474747"));
 		    		Username.setEditable(false);
 		    		Username.setBackground(Color.WHITE);
@@ -111,7 +150,7 @@ public class Register extends JFrame implements ActionListener{
 		    	}
 		    }
 		    public void mouseReleased(java.awt.event.MouseEvent evt) {
-		    	if(Username.getText().equals(" Do not use spaces or special characters besides underscore, dash, and period")) {
+		    	if(Username.getText().equals(" Do not use spaces in your username.")) {
 		    		Username.setText("");
 		    		Username.setForeground(Color.BLACK);
 		    		Username.setEditable(true);
@@ -122,6 +161,14 @@ public class Register extends JFrame implements ActionListener{
 		    }
 		});
 		
+		Username.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyPressed(java.awt.event.KeyEvent e) {
+		    if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+		    	OGPass.requestFocus();
+		     } 
+		   }
+		});
+		
 		PassCreateTxT.setBounds(25, 188, 250, 50);
 		PassCreateTxT.setText("Password");
 		PassCreateTxT.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -130,6 +177,13 @@ public class Register extends JFrame implements ActionListener{
 		OGPass.setBounds(25, 233, 180, 30);
 		OGPass.setFont(new Font("SansSerif", Font.BOLD, 14));
 		OGPass.setEchoChar('∗');
+		OGPass.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyPressed(java.awt.event.KeyEvent e) {
+		    if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+		    	CheckPass.requestFocus();
+		     } 
+		    }
+		});
 		
 		ConfirmPassTxT.setBounds(255, 188, 250, 50);
 		ConfirmPassTxT.setText("Confirm Password");
@@ -139,6 +193,121 @@ public class Register extends JFrame implements ActionListener{
 		CheckPass.setBounds(255, 233, 180, 30);
 		CheckPass.setFont(new Font("SansSerif", Font.BOLD, 14));
 		CheckPass.setEchoChar('∗');
+		CheckPass.addKeyListener(new java.awt.event.KeyAdapter() {
+		    public void keyPressed(java.awt.event.KeyEvent e) {
+		    if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+					if (LastName.getText().equals(null) || LastName.getText().equals("")) {
+						Last.setForeground(Color.red);
+					} else {
+						Last.setForeground(Color.BLACK);
+					}
+					
+					if (FirstName.getText().equals(null) || FirstName.getText().equals("")) {
+						First.setForeground(Color.red);
+					} else {
+						First.setForeground(Color.BLACK);
+					}
+					
+					if (MiddleIni.getText().equals(null) || MiddleIni.getText().equals("")) {
+						Middle.setForeground(Color.red);
+					} else {
+						Middle.setForeground(Color.BLACK);
+					}
+					
+					if (Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces in your username.")) {
+						UsernameTxT.setForeground(Color.red);
+					} else {
+						UsernameTxT.setForeground(Color.BLACK);
+					}
+					
+					if (new String(OGPass.getPassword()).equals(null) || new String(OGPass.getPassword()).equals("")) {
+						PassCreateTxT.setForeground(Color.red);
+					} else {
+						PassCreateTxT.setForeground(Color.BLACK);
+					}
+					
+					if (new String(CheckPass.getPassword()).equals(null) || new String(CheckPass.getPassword()).equals("")) {
+						ConfirmPassTxT.setForeground(Color.red);
+					} else {
+						ConfirmPassTxT.setForeground(Color.BLACK);
+					}
+					
+					if (LastName.getText().equals(null) || LastName.getText().equals("") || FirstName.getText().equals(null) || FirstName.getText().equals("") || MiddleIni.getText().equals(null) || MiddleIni.getText().equals("") || Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces in your username.") || new String(OGPass.getPassword()).equals(null) || new String(OGPass.getPassword()).equals("") || new String(CheckPass.getPassword()).equals(null) || new String(CheckPass.getPassword()).equals("")) {
+						JOptionPane.showMessageDialog(null, "Please fill out the form with the information needed", "Unsufficient Details", JOptionPane.WARNING_MESSAGE);
+					} else {	//CHECKS USERNAME 
+						int SpaceCheck = 0;
+						int CapitalCheck = 0;
+						int LowerCheck = 0;
+						int NumCheck = 0;
+				        
+				        for(int x=0;x<Username.getText().length();x++) {
+				        	if(Username.getText().charAt(x)==' ') {
+				        		SpaceCheck += 1;
+				        	} 
+				        }
+				        
+				        for(int x=0;x<OGPass.getPassword().length;x++) {
+				        	if(Character.isLowerCase(new String(OGPass.getPassword()).charAt(x))) {
+				        		LowerCheck += 1;
+				        	}
+				        }
+				        
+				        for(int x=0;x<OGPass.getPassword().length;x++) {
+				        	if(Character.isUpperCase(new String(OGPass.getPassword()).charAt(x))) {
+				        		CapitalCheck += 1;
+				        	}
+				        }
+				        
+				        for(int x=0;x<OGPass.getPassword().length;x++) {
+				        	if(Character.isDigit(new String(OGPass.getPassword()).charAt(x))) {
+				        		NumCheck += 1;
+				        	}
+				        }
+				        
+				        if(SpaceCheck > 0) {
+				        	JOptionPane.showMessageDialog(null, "You cannot have spaces in your username", "Invalid Username", JOptionPane.WARNING_MESSAGE);
+				        	UsernameTxT.setForeground(Color.red);
+				        } else {   //PASSCHECK 
+				        	
+				            if(new String(OGPass.getPassword()).length() < 8) { //PASSSIZE CHECK
+				            	JOptionPane.showMessageDialog(null, "Password cannot be less than 8 characters short", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+				            	PassCreateTxT.setForeground(Color.red);
+				            } else if (CapitalCheck == 0) {
+				            	JOptionPane.showMessageDialog(null, "Password needs to have atleast one capital letter", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+				            	PassCreateTxT.setForeground(Color.red);
+				            } else if (LowerCheck == 0) {
+				            	JOptionPane.showMessageDialog(null, "Password needs to have atleast one lowercase letter", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+				            	PassCreateTxT.setForeground(Color.red);
+				            } else if (NumCheck == 0) {
+				            	JOptionPane.showMessageDialog(null, "Password needs to have atleast one numeric character(0-9)", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+				            	PassCreateTxT.setForeground(Color.red);
+				            } else {
+				            	
+				            	if (!new String(OGPass.getPassword()).equals(new String(CheckPass.getPassword()))) {
+					            	JOptionPane.showMessageDialog(null, "Password does not match", "Password not matched", JOptionPane.ERROR_MESSAGE);
+					            	PassCreateTxT.setForeground(Color.red);
+					            	ConfirmPassTxT.setForeground(Color.red);
+					            } else {
+					            	JOptionPane.showMessageDialog(null, "Thank you for creating an account", "Successful Sign Up", JOptionPane.INFORMATION_MESSAGE);
+					            	PassCreateTxT.setForeground(Color.BLACK);
+					            	ConfirmPassTxT.setForeground(Color.BLACK);
+					            	LoginFrame Log = new LoginFrame();
+					            	Log.FinalUser = new String(Username.getText());
+					            	Log.FinalPass = new String(CheckPass.getPassword());            	     
+									LocalDate now = java.time.LocalDate.now();  
+									Log.FinalName = new String(LastName.getText() + ", " + FirstName.getText() + " " + MiddleIni.getText());
+									Log.DateCreate = now;  
+									Log.LoginFrameDesign();
+									dispose();	     
+									   
+					            }
+				        }
+					}
+				}
+			}
+		  } 
+		    
+		});
 		
 		CreateAccount.setText("Create Account");
 		CreateAccount.setBounds(25, 285, 205, 35);
@@ -249,6 +418,7 @@ public class Register extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		if(e.getSource() == CreateAccount) { //CHECKS NEEDED INFO
         	
 			if (LastName.getText().equals(null) || LastName.getText().equals("")) {
@@ -256,55 +426,88 @@ public class Register extends JFrame implements ActionListener{
 			} else {
 				Last.setForeground(Color.BLACK);
 			}
+			
 			if (FirstName.getText().equals(null) || FirstName.getText().equals("")) {
 				First.setForeground(Color.red);
 			} else {
 				First.setForeground(Color.BLACK);
 			}
+			
 			if (MiddleIni.getText().equals(null) || MiddleIni.getText().equals("")) {
 				Middle.setForeground(Color.red);
 			} else {
 				Middle.setForeground(Color.BLACK);
 			}
-			if (Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces or special characters besides underscore, dash, and period")) {
+			
+			if (Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces in your username.")) {
 				UsernameTxT.setForeground(Color.red);
 			} else {
 				UsernameTxT.setForeground(Color.BLACK);
 			}
+			
 			if (new String(OGPass.getPassword()).equals(null) || new String(OGPass.getPassword()).equals("")) {
 				PassCreateTxT.setForeground(Color.red);
 			} else {
 				PassCreateTxT.setForeground(Color.BLACK);
 			}
+			
 			if (new String(CheckPass.getPassword()).equals(null) || new String(CheckPass.getPassword()).equals("")) {
 				ConfirmPassTxT.setForeground(Color.red);
 			} else {
 				ConfirmPassTxT.setForeground(Color.BLACK);
 			}
 			
-			if (LastName.getText().equals(null) || LastName.getText().equals("") || FirstName.getText().equals(null) || FirstName.getText().equals("") || MiddleIni.getText().equals(null) || MiddleIni.getText().equals("") || Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces or special characters besides underscore, dash, and period") || new String(OGPass.getPassword()).equals(null) || new String(OGPass.getPassword()).equals("") || new String(CheckPass.getPassword()).equals(null) || new String(CheckPass.getPassword()).equals("")) {
+			if (LastName.getText().equals(null) || LastName.getText().equals("") || FirstName.getText().equals(null) || FirstName.getText().equals("") || MiddleIni.getText().equals(null) || MiddleIni.getText().equals("") || Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces in your username.") || new String(OGPass.getPassword()).equals(null) || new String(OGPass.getPassword()).equals("") || new String(CheckPass.getPassword()).equals(null) || new String(CheckPass.getPassword()).equals("")) {
 				JOptionPane.showMessageDialog(this, "Please fill out the form with the information needed", "Unsufficient Details", JOptionPane.WARNING_MESSAGE);
 			} else {	//CHECKS USERNAME 
 				int SpaceCheck = 0;
-				Pattern pattern = Pattern.compile("[a-zA-Z0-9]._-");
-		        Matcher matcher = pattern.matcher(Username.getText());
-		        boolean isStringContainsSpecialCharacter = matcher.find();
+				int CapitalCheck = 0;
+				int LowerCheck = 0;
+				int NumCheck = 0;
 		        
 		        for(int x=0;x<Username.getText().length();x++) {
 		        	if(Username.getText().charAt(x)==' ') {
 		        		SpaceCheck += 1;
+		        	} 
+		        }
+		        
+		        for(int x=0;x<OGPass.getPassword().length;x++) {
+		        	if(Character.isLowerCase(new String(OGPass.getPassword()).charAt(x))) {
+		        		LowerCheck += 1;
 		        	}
 		        }
 		        
-		        if(isStringContainsSpecialCharacter || SpaceCheck > 0) {
-		        	JOptionPane.showMessageDialog(this, "You cannot have spaces or special characters in your username", "Invalid Username", JOptionPane.WARNING_MESSAGE);
+		        for(int x=0;x<OGPass.getPassword().length;x++) {
+		        	if(Character.isUpperCase(new String(OGPass.getPassword()).charAt(x))) {
+		        		CapitalCheck += 1;
+		        	}
+		        }
+		        
+		        for(int x=0;x<OGPass.getPassword().length;x++) {
+		        	if(Character.isDigit(new String(OGPass.getPassword()).charAt(x))) {
+		        		NumCheck += 1;
+		        	}
+		        }
+		        
+		        if(SpaceCheck > 0) {
+		        	JOptionPane.showMessageDialog(this, "You cannot have spaces in your username", "Invalid Username", JOptionPane.WARNING_MESSAGE);
 		        	UsernameTxT.setForeground(Color.red);
 		        } else {   //PASSCHECK 
 		        	
 		            if(new String(OGPass.getPassword()).length() < 8) { //PASSSIZE CHECK
 		            	JOptionPane.showMessageDialog(this, "Password cannot be less than 8 characters short", "Invalid Password", JOptionPane.WARNING_MESSAGE);
 		            	PassCreateTxT.setForeground(Color.red);
+		            } else if (CapitalCheck == 0) {
+		            	JOptionPane.showMessageDialog(this, "Password needs to have atleast one capital letter", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
+		            } else if (LowerCheck == 0) {
+		            	JOptionPane.showMessageDialog(this, "Password needs to have atleast one lowercase letter", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
+		            } else if (NumCheck == 0) {
+		            	JOptionPane.showMessageDialog(this, "Password needs to have atleast one numeric character(0-9)", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
 		            } else {
+		            	
 		            	if (!new String(OGPass.getPassword()).equals(new String(CheckPass.getPassword()))) {
 			            	JOptionPane.showMessageDialog(this, "Password does not match", "Password not matched", JOptionPane.ERROR_MESSAGE);
 			            	PassCreateTxT.setForeground(Color.red);
@@ -316,10 +519,9 @@ public class Register extends JFrame implements ActionListener{
 			            	LoginFrame Log = new LoginFrame();
 			            	Log.FinalUser = new String(Username.getText());
 			            	Log.FinalPass = new String(CheckPass.getPassword());            	     
-			            	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy ss:mm:HH");  
-							LocalDateTime now = LocalDateTime.now();  
+							LocalDate now = java.time.LocalDate.now();  
 							Log.FinalName = new String(LastName.getText() + ", " + FirstName.getText() + " " + MiddleIni.getText());
-							Log.DateCreate = new String(dtf.format(now));  
+							Log.DateCreate = now;  
 							Log.LoginFrameDesign();
 							dispose();		     
 							   
@@ -345,7 +547,7 @@ public class Register extends JFrame implements ActionListener{
 					First.setForeground(Color.BLACK);
 					MiddleIni.setText("");
 					Middle.setForeground(Color.BLACK);
-					Username.setText(" Do not use spaces or special characters besides underscore, dash, and period");
+					Username.setText(" Do not use spaces in your username.");
 					Username.setForeground(Color.decode("#474747"));
 					UsernameTxT.setForeground(Color.BLACK);
 					OGPass.setText("");

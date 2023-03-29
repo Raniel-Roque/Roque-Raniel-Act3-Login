@@ -1,0 +1,403 @@
+package loginsystem;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+import java.util.regex.Matcher; 
+import java.util.regex.Pattern;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+
+public class Register extends JFrame implements ActionListener{
+	
+	ImageIcon Logo = new ImageIcon(new ImageIcon("202-2024687_profile-icon-for-the-politics-category-profile-icon.png").getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+	ImageIcon ShowImgPass = new ImageIcon(new ImageIcon("ShowPass-removebg-preview.png").getImage().getScaledInstance(25, 27, Image.SCALE_SMOOTH));
+	ImageIcon HideImgPass = new ImageIcon(new ImageIcon("HidePass-removebg-preview.png").getImage().getScaledInstance(25, 27, Image.SCALE_SMOOTH));
+	Toolkit ToolK = getToolkit();
+	Dimension Size = ToolK.getScreenSize();
+	
+	JLabel CreateAccountTxT = new JLabel();
+	JLabel Last =  new JLabel();
+	JLabel First = new JLabel();
+	JLabel Middle = new JLabel();
+	JLabel UsernameTxT = new JLabel();
+	JLabel PassCreateTxT = new JLabel();
+	JLabel ConfirmPassTxT = new JLabel();
+	
+	JTextField LastName = new JTextField();
+	JTextField FirstName = new JTextField();
+	JTextField MiddleIni = new JTextField();
+	JTextField Username = new JTextField();
+	JPasswordField OGPass = new JPasswordField();
+	JPasswordField CheckPass = new JPasswordField();
+	
+	JButton CreateAccount = new JButton();
+	JButton Cancel = new JButton();
+
+	void RegisterDesign(){	
+		setSize(502, 390);
+		setLocation(Size.width/2 - getWidth()/2, Size.height/2 - getHeight()/2);
+		getContentPane().setBackground(Color.decode("#F5F5DC"));
+		setResizable(false);
+		setTitle("Account Sign Up");
+		setIconImage(Logo.getImage());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Components
+		JButton ShowPass = new JButton();
+		JButton ShowPass2 = new JButton();
+		//Main Design
+		CreateAccountTxT.setBounds(25, 5, 250, 50);
+		CreateAccountTxT.setText("Create an Account");
+		CreateAccountTxT.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 25));
+		CreateAccountTxT.setForeground(Color.black);
+		
+		Last.setBounds(25, 50, 250, 50);
+		Last.setText("Last Name");
+		Last.setFont(new Font("SansSerif", Font.BOLD, 15));
+		Last.setForeground(Color.black);
+		
+		LastName.setBounds(25, 90, 180, 30);
+		LastName.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		LastName.setForeground(Color.BLACK);
+		
+		First.setBounds(228, 50, 150, 50);
+		First.setText("First Name");
+		First.setFont(new Font("SansSerif", Font.BOLD, 15));
+		First.setForeground(Color.black);
+		
+		FirstName.setBounds(228, 90, 180, 30);
+		FirstName.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		FirstName.setForeground(Color.BLACK);
+		
+		Middle.setBounds(430, 50, 150, 50);
+		Middle.setText("M.I.");
+		Middle.setFont(new Font("SansSerif", Font.BOLD, 15));
+		Middle.setForeground(Color.black);
+		
+		MiddleIni.setBounds(430, 90, 30, 30);
+		MiddleIni.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		MiddleIni.setForeground(Color.BLACK);
+		
+		UsernameTxT.setBounds(25, 115, 250, 50);
+		UsernameTxT.setText("Username");
+		UsernameTxT.setFont(new Font("SansSerif", Font.BOLD, 15));
+		UsernameTxT.setForeground(Color.black);
+		
+		Username.setBounds(25, 160, 435, 30);
+		Username.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		Username.setForeground(Color.decode("#474747"));
+		Username.setText(" Do not use spaces or special characters besides underscore, dash, and period");
+		Username.setEditable(false);
+		Username.setBackground(Color.WHITE);
+		Username.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		Username.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		Username.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(Username.getText().isEmpty()) {
+		    		Username.setText(" Do not use spaces or special characters besides underscore, dash, and period");
+		    		Username.setForeground(Color.decode("#474747"));
+		    		Username.setEditable(false);
+		    		Username.setBackground(Color.WHITE);
+		    		Username.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		    		Username.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		    	}
+		    }
+		    public void mouseReleased(java.awt.event.MouseEvent evt) {
+		    	if(Username.getText().equals(" Do not use spaces or special characters besides underscore, dash, and period")) {
+		    		Username.setText("");
+		    		Username.setForeground(Color.BLACK);
+		    		Username.setEditable(true);
+		    		Username.setBackground(Color.WHITE);
+		    		Username.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		    		Username.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		    	}
+		    }
+		});
+		
+		PassCreateTxT.setBounds(25, 188, 250, 50);
+		PassCreateTxT.setText("Password");
+		PassCreateTxT.setFont(new Font("SansSerif", Font.BOLD, 15));
+		PassCreateTxT.setForeground(Color.black);
+		
+		OGPass.setBounds(25, 233, 180, 30);
+		OGPass.setFont(new Font("SansSerif", Font.BOLD, 14));
+		OGPass.setEchoChar('∗');
+		
+		ConfirmPassTxT.setBounds(255, 188, 250, 50);
+		ConfirmPassTxT.setText("Confirm Password");
+		ConfirmPassTxT.setFont(new Font("SansSerif", Font.BOLD, 15));
+		ConfirmPassTxT.setForeground(Color.black);
+		
+		CheckPass.setBounds(255, 233, 180, 30);
+		CheckPass.setFont(new Font("SansSerif", Font.BOLD, 14));
+		CheckPass.setEchoChar('∗');
+		
+		CreateAccount.setText("Create Account");
+		CreateAccount.setBounds(25, 285, 205, 35);
+		CreateAccount.setFont(new Font("SanSerif", Font.BOLD, 16));
+		CreateAccount.setForeground(Color.black);
+		CreateAccount.setBackground(Color.decode("#bbf5b8"));
+		CreateAccount.setOpaque(true);
+		CreateAccount.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+		CreateAccount.setFocusable(false);
+		CreateAccount.addActionListener(this);
+		CreateAccount.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		CreateAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	CreateAccount.setBackground(Color.decode("#02bf34"));
+		    	CreateAccount.setForeground(Color.white);
+		    }
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	CreateAccount.setBackground(Color.decode("#bbf5b8"));
+		    	CreateAccount.setForeground(Color.black);
+		    }
+		});
+		
+		Cancel.setText("Cancel");
+		Cancel.setBounds(255, 285, 205, 35);
+		Cancel.setFont(new Font("SanSerif", Font.BOLD, 16));
+		Cancel.setForeground(Color.black);
+		Cancel.setBackground(Color.decode("#f5b8b8"));
+		Cancel.setOpaque(true);
+		Cancel.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+		Cancel.setFocusable(false);
+		Cancel.addActionListener(this);
+		Cancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	Cancel.setBackground(Color.decode("#f72525"));
+		    	Cancel.setForeground(Color.white);
+		    }
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	Cancel.setBackground(Color.decode("#f5b8b8"));
+		    	Cancel.setForeground(Color.black);
+		    }
+		});
+		
+		ShowPass.setIcon(HideImgPass);
+		ShowPass.setBounds(205, 233, 25, 29);
+		ShowPass.setBackground(Color.decode("#F5F5DC"));
+		ShowPass.setOpaque(true);
+		ShowPass.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		ShowPass.setFocusable(false);
+		ShowPass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ShowPass.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mousePressed(java.awt.event.MouseEvent evt) {
+		    	ShowPass.setIcon(ShowImgPass);
+		    	OGPass.setEchoChar((char)0);
+		    	OGPass.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		    }
+		    public void mouseReleased(java.awt.event.MouseEvent evt) {
+		    	ShowPass.setIcon(HideImgPass);
+		    	OGPass.setEchoChar('∗');
+		    	OGPass.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    }
+		});
+		
+		ShowPass2.setIcon(HideImgPass);
+		ShowPass2.setBounds(435, 233, 25, 29);
+		ShowPass2.setBackground(Color.decode("#F5F5DC"));
+		ShowPass2.setOpaque(true);
+		ShowPass2.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		ShowPass2.setFocusable(false);
+		ShowPass2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ShowPass2.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mousePressed(java.awt.event.MouseEvent evt) {
+		    	ShowPass2.setIcon(ShowImgPass);
+		    	CheckPass.setEchoChar((char)0);
+		    	CheckPass.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		    }
+		    public void mouseReleased(java.awt.event.MouseEvent evt) {
+		    	ShowPass2.setIcon(HideImgPass);
+		    	CheckPass.setEchoChar('∗');
+		    	CheckPass.setFont(new Font("SansSerif", Font.BOLD, 14));
+		    }
+		});
+		
+		//Add
+		add(CreateAccountTxT);
+		add(Last);
+		add(LastName);
+		add(First);
+		add(FirstName);
+		add(Middle);
+		add(MiddleIni);
+		add(UsernameTxT);
+		add(Username);
+		add(PassCreateTxT);
+		add(OGPass);
+		add(ConfirmPassTxT);
+		add(CheckPass);
+		
+		add(CreateAccount);
+		add(Cancel);
+		add(ShowPass);
+		add(ShowPass2);
+		
+		setLayout(null);
+		setVisible(true);
+}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == CreateAccount) { //CHECKS NEEDED INFO
+        	
+			if (LastName.getText().equals(null) || LastName.getText().equals("")) {
+				Last.setForeground(Color.red);
+			} else {
+				Last.setForeground(Color.BLACK);
+			}
+			
+			if (FirstName.getText().equals(null) || FirstName.getText().equals("")) {
+				First.setForeground(Color.red);
+			} else {
+				First.setForeground(Color.BLACK);
+			}
+			
+			if (MiddleIni.getText().equals(null) || MiddleIni.getText().equals("")) {
+				Middle.setForeground(Color.red);
+			} else {
+				Middle.setForeground(Color.BLACK);
+			}
+			
+			if (Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces or special characters besides underscore, dash, and period")) {
+				UsernameTxT.setForeground(Color.red);
+			} else {
+				UsernameTxT.setForeground(Color.BLACK);
+			}
+			
+			if (new String(OGPass.getPassword()).equals(null) || new String(OGPass.getPassword()).equals("")) {
+				PassCreateTxT.setForeground(Color.red);
+			} else {
+				PassCreateTxT.setForeground(Color.BLACK);
+			}
+			
+			if (new String(CheckPass.getPassword()).equals(null) || new String(CheckPass.getPassword()).equals("")) {
+				ConfirmPassTxT.setForeground(Color.red);
+			} else {
+				ConfirmPassTxT.setForeground(Color.BLACK);
+			}
+			
+			if (LastName.getText().equals(null) || LastName.getText().equals("") || FirstName.getText().equals(null) || FirstName.getText().equals("") || MiddleIni.getText().equals(null) || MiddleIni.getText().equals("") || Username.getText().equals(null) || Username.getText().equals("") || Username.getText().equals(" Do not use spaces or special characters besides underscore, dash, and period") || new String(OGPass.getPassword()).equals(null) || new String(OGPass.getPassword()).equals("") || new String(CheckPass.getPassword()).equals(null) || new String(CheckPass.getPassword()).equals("")) {
+				JOptionPane.showMessageDialog(this, "Please fill out the form with the information needed", "Unsufficient Details", JOptionPane.WARNING_MESSAGE);
+			} else {	//CHECKS USERNAME 
+				int SpaceCheck = 0;
+				int CapitalCheck = 0;
+				int LowerCheck = 0;
+				int NumCheck = 0;
+				
+				Pattern Userpattern = Pattern.compile("[a-zA-Z0-9]+");
+		        Matcher Usermatcher = Userpattern.matcher(Username.getText());
+		        boolean UserSpecial = Usermatcher.find();
+		        
+		        Pattern Passpattern = Pattern.compile("^[^a-zA-Z0-9]+$");
+		        Matcher Passmatcher = Passpattern.matcher(new String(OGPass.getPassword()));
+		        boolean PassSpecial = Passmatcher.find();
+		        
+		        for(int x=0;x<Username.getText().length();x++) {
+		        	if(Username.getText().charAt(x)==' ') {
+		        		SpaceCheck += 1;
+		        	}
+		        }
+		        
+		        for(int x=0;x<OGPass.getPassword().length;x++) {
+		        	if(Character.isLowerCase(new String(OGPass.getPassword()).charAt(x))) {
+		        		LowerCheck += 1;
+		        	}
+		        }
+		        
+		        for(int x=0;x<OGPass.getPassword().length;x++) {
+		        	if(Character.isUpperCase(new String(OGPass.getPassword()).charAt(x))) {
+		        		CapitalCheck += 1;
+		        	}
+		        }
+		        
+		        for(int x=0;x<OGPass.getPassword().length;x++) {
+		        	if(Character.isDigit(new String(OGPass.getPassword()).charAt(x))) {
+		        		NumCheck += 1;
+		        	}
+		        }
+		        
+		        if(UserSpecial || SpaceCheck > 0) {
+		        	JOptionPane.showMessageDialog(this, "You cannot have spaces or special characters in your username", "Invalid Username", JOptionPane.WARNING_MESSAGE);
+		        	UsernameTxT.setForeground(Color.red);
+		        } else {   //PASSCHECK 
+		        	
+		            if(new String(OGPass.getPassword()).length() < 8) { //PASSSIZE CHECK
+		            	JOptionPane.showMessageDialog(this, "Password cannot be less than 8 characters short", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
+		            } else if (CapitalCheck == 0) {
+		            	JOptionPane.showMessageDialog(this, "Password needs to have atleast one capital letter", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
+		            } else if (LowerCheck == 0) {
+		            	JOptionPane.showMessageDialog(this, "Password needs to have atleast one lowercase letter", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
+		            } else if (PassSpecial == false) {
+		            	JOptionPane.showMessageDialog(this, "Password needs to have atleast one non-alphanumeric character (!, $, #, %, @, -, _, /, or .)", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
+		            } else if (NumCheck == 0) {
+		            	JOptionPane.showMessageDialog(this, "Password needs to have atleast one numeric character(0-9)", "Invalid Password", JOptionPane.WARNING_MESSAGE);
+		            	PassCreateTxT.setForeground(Color.red);
+		            } else {
+		            	
+		            	if (!new String(OGPass.getPassword()).equals(new String(CheckPass.getPassword()))) {
+			            	JOptionPane.showMessageDialog(this, "Password does not match", "Password not matched", JOptionPane.ERROR_MESSAGE);
+			            	PassCreateTxT.setForeground(Color.red);
+			            	ConfirmPassTxT.setForeground(Color.red);
+			            } else {
+			            	JOptionPane.showMessageDialog(this, "Thank you for creating an account", "Successful Sign Up", JOptionPane.INFORMATION_MESSAGE);
+			            	PassCreateTxT.setForeground(Color.BLACK);
+			            	ConfirmPassTxT.setForeground(Color.BLACK);
+			            	LoginFrame Log = new LoginFrame();
+			            	Log.FinalUser = new String(Username.getText());
+			            	Log.FinalPass = new String(CheckPass.getPassword());            	     
+			            	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy ss:mm:HH");  
+							LocalDateTime now = LocalDateTime.now();  
+							Log.FinalName = new String(LastName.getText() + ", " + FirstName.getText() + " " + MiddleIni.getText());
+							Log.DateCreate = new String(dtf.format(now));  
+							Log.LoginFrameDesign();
+							dispose();		     
+							   
+			            }
+		        }
+			}
+		}
+	}
+		
+		//CANCEL
+		if (e.getSource() == Cancel) {
+			int CancelConf= JOptionPane.showConfirmDialog(this, "Are you sure to cancel signing up?", "Cancel Sign Up", JOptionPane.YES_NO_OPTION);
+			if (CancelConf == JOptionPane.YES_OPTION) {
+				int Back = JOptionPane.showConfirmDialog(this, "Do you want to go back to the login page?", "Cancel Sign Up", JOptionPane.YES_NO_OPTION);
+				if (Back == JOptionPane.YES_OPTION) {
+					LoginFrame Log = new LoginFrame();
+					Log.LoginFrameDesign();
+					dispose();
+					} else {
+					LastName.setText("");
+					Last.setForeground(Color.BLACK);
+					FirstName.setText("");
+					First.setForeground(Color.BLACK);
+					MiddleIni.setText("");
+					Middle.setForeground(Color.BLACK);
+					Username.setText(" Do not use spaces or special characters besides underscore, dash, and period");
+					Username.setForeground(Color.decode("#474747"));
+					UsernameTxT.setForeground(Color.BLACK);
+					OGPass.setText("");
+					PassCreateTxT.setForeground(Color.BLACK);
+					CheckPass.setText("");
+					ConfirmPassTxT.setForeground(Color.BLACK);
+				}
+			}
+		}
+	}
+}
