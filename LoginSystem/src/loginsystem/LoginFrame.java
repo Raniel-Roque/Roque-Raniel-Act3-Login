@@ -72,9 +72,33 @@ public class LoginFrame extends JFrame implements ActionListener{
 		New.setForeground(Color.WHITE);
 		
 		BioSide.setBounds(18, 185, 150, 50);
-		BioSide.setText("<html> &nbsp;&nbsp;&nbsp;&nbsp;Create your  <br> account for <u>Free</u>! </html>");
+		BioSide.setText("<html> &nbsp;&nbsp;&nbsp;&nbsp;Create your  <br> account for <u><font color = #0000EE>Free</color></u>! </html>");
 		BioSide.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		BioSide.setForeground(Color.WHITE);
+		BioSide.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		BioSide.addMouseListener(new java.awt.event.MouseAdapter() {
+			 
+		    public void mouseClicked(MouseEvent e) {
+					int SignUpConf = JOptionPane.showConfirmDialog(null, "Create new account? (Previous account will be removed once created)", "Sign Up Form", JOptionPane.YES_NO_OPTION);
+					if(SignUpConf == JOptionPane.YES_OPTION) {
+						Register Reg = new Register();
+						Reg.FinalUser = FinalUser;
+						Reg.FinalPass = FinalPass;
+						Reg.FinalName = FinalName;
+		 				Reg.DateCreate = DateCreate;
+						Reg.RegisterDesign();
+						dispose();
+					}
+					
+		    }
+		 
+		    public void mouseEntered(MouseEvent e) {
+		    	BioSide.setText("<html> &nbsp;&nbsp;&nbsp;&nbsp;Create your  <br> account for <b><u><font color = #7ad2f5>Free</color></u></b>! </html>");
+		    }
+		    public void mouseExited(MouseEvent e) {
+		    	BioSide.setText("<html> &nbsp;&nbsp;&nbsp;&nbsp;Create your  <br> account for <u><font color = #0000EE>Free</color></u>! </html>");
+		    }
+		});
 		
 		SignUp.setBounds(15, 250, 120, 35);
 		SignUp.setText("Sign Up");
@@ -247,9 +271,13 @@ public class LoginFrame extends JFrame implements ActionListener{
 		
 		//SIGNUP SIDE BAR
 		if(e.getSource() == SignUp) {
-			int SignUpConf = JOptionPane.showConfirmDialog(this, "Create new account?", "Sign Up Form", JOptionPane.YES_NO_OPTION);
+			int SignUpConf = JOptionPane.showConfirmDialog(this, "Create new account? (Previous account will be removed once created)", "Sign Up Form", JOptionPane.YES_NO_OPTION);
 			if(SignUpConf == JOptionPane.YES_OPTION) {
 				Register Reg = new Register();
+				Reg.FinalUser = FinalUser;
+				Reg.FinalPass = FinalPass;
+				Reg.FinalName = FinalName;
+ 				Reg.DateCreate = DateCreate;
 				Reg.RegisterDesign();
 				dispose();
 			}

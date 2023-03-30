@@ -78,7 +78,7 @@ public class AccountInfo extends JFrame implements ActionListener{
 		    	int a = Box.getWidth();
 	    			if(a == 50) {
 	    				Box.setBounds(0, 0, 150, 400);
-	    				MenuLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
+	    				MenuLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
 	    				MenuLogo.setText("  Menu    ");
 	    				MenuLogo.setHorizontalTextPosition(JLabel.RIGHT);
 	    				MenuLogo.setIconTextGap(10);
@@ -86,7 +86,7 @@ public class AccountInfo extends JFrame implements ActionListener{
 	    				MenuLogo.setFont(new Font("SansSerif", Font.BOLD, 21));
 	    				MenuLogo.setForeground(Color.WHITE);
 	    				
-	    				HomeLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
+	    				HomeLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
 	    				HomeLogo.setText("   Home    ");
 	    				HomeLogo.setHorizontalTextPosition(JLabel.RIGHT);
 	    				HomeLogo.setIconTextGap(0);
@@ -94,7 +94,7 @@ public class AccountInfo extends JFrame implements ActionListener{
 	    				HomeLogo.setFont(new Font("SansSerif", Font.BOLD, 21));
 	    				HomeLogo.setForeground(Color.WHITE);
 	    				
-	    				AccLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
+	    				AccLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
 	    				AccLogo.setText("  Account  ");
 	    				AccLogo.setHorizontalTextPosition(JLabel.RIGHT);
 	    				AccLogo.setIconTextGap(3);
@@ -113,17 +113,17 @@ public class AccountInfo extends JFrame implements ActionListener{
 	    			}
 	    			if(a == 150) {
 	    				Box.setBounds(0, 0, 50, 400);
-	    				MenuLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
+	    				MenuLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
 	    				MenuLogo.setText("");
 	    				MenuLogo.setIconTextGap(0);
 	    				MenuLogo.setBounds(0, 0, 50, 50);
 	    				
-	    				HomeLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
+	    				HomeLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
 	    				HomeLogo.setText("");
 	    				HomeLogo.setIconTextGap(0);
 	    				HomeLogo.setBounds(0, 50, 50, 50);
 	    				
-	    				AccLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
+	    				AccLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
 	    				AccLogo.setText("");
 	    				AccLogo.setIconTextGap(0);
 	    				AccLogo.setBounds(0, 100, 50, 50);

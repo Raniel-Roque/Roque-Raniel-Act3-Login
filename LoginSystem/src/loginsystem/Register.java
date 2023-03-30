@@ -43,6 +43,9 @@ public class Register extends JFrame implements ActionListener{
 	JButton CreateAccount = new JButton();
 	JButton Cancel = new JButton();
 
+	String FinalUser, FinalPass, FinalName;
+	LocalDate DateCreate;
+	
 	void RegisterDesign(){	
 		setSize(502, 390);
 		setLocation(Size.width/2 - getWidth()/2, Size.height/2 - getHeight()/2);
@@ -355,7 +358,7 @@ public class Register extends JFrame implements ActionListener{
 		ShowPass.setBounds(205, 233, 25, 29);
 		ShowPass.setBackground(Color.decode("#F5F5DC"));
 		ShowPass.setOpaque(true);
-		ShowPass.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		ShowPass.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 0));
 		ShowPass.setFocusable(false);
 		ShowPass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ShowPass.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -375,7 +378,7 @@ public class Register extends JFrame implements ActionListener{
 		ShowPass2.setBounds(435, 233, 25, 29);
 		ShowPass2.setBackground(Color.decode("#F5F5DC"));
 		ShowPass2.setOpaque(true);
-		ShowPass2.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 1));
+		ShowPass2.setBorder(BorderFactory.createLineBorder(Color.decode("#7a8a99"), 0));
 		ShowPass2.setFocusable(false);
 		ShowPass2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ShowPass2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -538,6 +541,10 @@ public class Register extends JFrame implements ActionListener{
 				int Back = JOptionPane.showConfirmDialog(this, "Do you want to go back to the login page?", "Cancel Sign Up", JOptionPane.YES_NO_OPTION);
 				if (Back == JOptionPane.YES_OPTION) {
 					LoginFrame Log = new LoginFrame();
+					Log.FinalUser = FinalUser;
+					Log.FinalPass = FinalPass;
+					Log.FinalName = FinalName;
+					Log.DateCreate = DateCreate;
 					Log.LoginFrameDesign();
 					dispose();
 					} else {

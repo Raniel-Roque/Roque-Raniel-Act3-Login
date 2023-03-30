@@ -70,7 +70,7 @@ public class Dashboard extends JFrame implements ActionListener{
 		    	int a = Box.getWidth();
 	    			if(a == 50) {
 	    				Box.setBounds(0, 0, 150, 400);
-	    				HomeLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
+	    				MenuLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
 	    				MenuLogo.setText("  Menu    ");
 	    				MenuLogo.setHorizontalTextPosition(JLabel.RIGHT);
 	    				MenuLogo.setIconTextGap(10);
@@ -105,7 +105,7 @@ public class Dashboard extends JFrame implements ActionListener{
 	    			}
 	    			if(a == 150) {
 	    				Box.setBounds(0, 0, 50, 400);
-	    				MenuLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#f78b6d")));
+	    				MenuLogo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 4, Color.decode("#fa6941")));
 	    				MenuLogo.setText("");
 	    				MenuLogo.setIconTextGap(0);
 	    				MenuLogo.setBounds(0, 0, 50, 50);
